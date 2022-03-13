@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text as RNText, StyleSheet, TextStyle } from 'react-native'
+import { colors } from '../../theme/colors'
 
 type TextPropType = {
   style?: TextStyle
@@ -11,6 +12,6 @@ export const Text: React.FC<TextPropType> = ({ children, style }) => {
 
 const styles = StyleSheet.create({
   defaultStyle: {
-    color: '#242424',
+    color: colors.darkText,
   },
 })

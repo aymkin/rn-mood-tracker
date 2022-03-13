@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { MoodOptionType } from '../../types'
 import { Text } from '../Text'
 import { PressableArea } from '../PressableArea'
+import { colors } from '../../theme/colors'
 
 const moodOptions: MoodOptionType[] = [
   { emoji: '🧑‍💻', description: 'studious' },
@@ -56,8 +57,8 @@ const styles = StyleSheet.create({
   },
   selectedMoodItem: {
     borderWidth: 2,
-    backgroundColor: '#454c73',
-    borderColor: '#ffffff',
+    backgroundColor: colors.purple,
+    borderColor: colors.white,
   },
   descriptionText: {
     color: '#454c73',
