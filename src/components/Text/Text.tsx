@@ -2,7 +2,7 @@ import React from 'react'
 import { Text as RNText, StyleSheet, TextStyle } from 'react-native'
 
 type TextPropType = {
-  style: TextStyle
+  style?: TextStyle
 }
 
 export const Text: React.FC<TextPropType> = ({ children, style }) => {
