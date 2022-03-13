@@ -4,6 +4,8 @@ import { colors } from '../../theme/colors'
 
 type TextPropType = {
   style?: TextStyle
+  // todo create text presets
+  // preset?: 'header' | 'text'
 }
 
 export const Text: React.FC<TextPropType> = ({ children, style }) => {

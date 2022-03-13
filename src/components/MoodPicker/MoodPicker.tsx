@@ -16,24 +16,31 @@ const moodOptions: MoodOptionType[] = [
 export const MoodPicker: React.FC = () => {
   const [selectedMood, setSelectedMood] = useState<MoodOptionType>()
   return (
-    <View style={styles.moodList}>
-      {moodOptions.map(option => (
-        <View key={option.emoji}>
-          <PressableArea
-            onPress={() => setSelectedMood(option)}
-            style={[
-              styles.moodItem,
-              option.emoji === selectedMood?.emoji
-                ? styles.selectedMoodItem
-                : undefined,
-            ]}>
-            <Text style={styles.moodText}>{option.emoji}</Text>
-          </PressableArea>
-          <Text style={styles.descriptionText}>
-            {selectedMood?.emoji === option.emoji ? option.description : ''}
-          </Text>
-        </View>
-      ))}
+    <View style={styles.container}>
+      <Text style={styles.heading}>How are you right now?</Text>
+      <View style={styles.moodList}>
+        {moodOptions.map(option => (
+          <View key={option.emoji}>
+            <PressableArea
+              onPress={() => setSelectedMood(option)}
+              key={option.emoji}
+              style={[
+                styles.moodItem,
+                option.emoji === selectedMood?.emoji
+                  ? styles.selectedMoodItem
+                  : undefined,
+              ]}>
+              <Text style={styles.moodText}>{option.emoji}</Text>
+            </PressableArea>
+            <Text style={styles.descriptionText}>
+              {selectedMood?.emoji === option.emoji ? option.description : ' '}
+            </Text>
+          </View>
+        ))}
+      </View>
+      <PressableArea style={styles.button}>
+        <Text style={styles.buttonText}>Choose</Text>
+      </PressableArea>
     </View>
   )
 }
@@ -45,7 +52,6 @@ const styles = StyleSheet.create({
   moodList: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 20,
   },
   moodItem: {
     width: 60,
@@ -61,9 +67,36 @@ const styles = StyleSheet.create({
     borderColor: colors.white,
   },
   descriptionText: {
-    color: '#454c73',
+    color: colors.purple,
     fontWeight: 'bold',
     fontSize: 10,
     textAlign: 'center',
+  },
+  container: {
+    borderWidth: 2,
+    borderColor: colors.purple,
+    margin: 10,
+    borderRadius: 10,
+    padding: 20,
+  },
+  heading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    letterSpacing: 1,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: colors.purple,
+    width: 150,
+    borderRadius: 20,
+    marginTop: 20,
+    alignSelf: 'center',
+    padding: 10,
+  },
+  buttonText: {
+    color: colors.white,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 })
