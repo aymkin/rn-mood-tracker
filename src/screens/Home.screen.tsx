@@ -1,11 +1,11 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Text } from '../components/Text'
+import { MoodPicker } from '../components/MoodPicker'
 
 export const HomeScreen: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text>HomeScreen</Text>
+      <MoodPicker />
     </View>
   )
 }
@@ -13,5 +13,6 @@ export const HomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
   },
 })
