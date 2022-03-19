@@ -1,9 +1,10 @@
 import React, { useCallback, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Image } from 'react-native'
 import { MoodOptionType } from '../../types'
 import { Text } from '../Text'
 import { PressableArea } from '../PressableArea'
 import { colors } from '../../theme/colors'
+const imageSrc = require('../../assets/butterflies.png')
 
 const moodOptions: MoodOptionType[] = [
   { emoji: '🧑‍💻', description: 'studious' },
@@ -19,12 +20,28 @@ type MoodPickerProps = {
 
 export const MoodPicker: React.FC<MoodPickerProps> = ({ onSelect }) => {
   const [selectedMood, setSelectedMood] = useState<MoodOptionType>()
+  const [hasSelected, setHasSelected] = useState(false)
   const handleSelect = useCallback(() => {
     if (selectedMood) {
       onSelect(selectedMood)
       setSelectedMood(undefined)
+      setHasSelected(true)
     }
   }, [onSelect, selectedMood])
+
+  if (hasSelected) {
+    return (
+      <View style={styles.container}>
+        <Image source={imageSrc} style={styles.image} />
+        <PressableArea
+          style={styles.button}
+          onPress={() => setHasSelected(false)}>
+          <Text style={styles.buttonText}>Back</Text>
+        </PressableArea>
+      </View>
+    )
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>How are you right now?</Text>
@@ -88,6 +105,14 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 10,
     padding: 20,
+    justifyContent: 'space-between',
+    height: 230,
+  },
+  image: {
+    alignSelf: 'center',
+    height: 100,
+    width: 300,
+    resizeMode: 'contain',
   },
   heading: {
     fontSize: 20,
