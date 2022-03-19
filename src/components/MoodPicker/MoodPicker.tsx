@@ -4,6 +4,7 @@ import { MoodOptionType } from '../../types'
 import { Text } from '../Text'
 import { PressableArea } from '../PressableArea'
 import { colors } from '../../theme/colors'
+import { fonts } from '../../theme/fonts'
 const imageSrc = require('../../assets/butterflies.png')
 
 const moodOptions: MoodOptionType[] = [
@@ -95,9 +96,9 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     color: colors.purple,
-    fontWeight: 'bold',
     fontSize: 10,
     textAlign: 'center',
+    fontFamily: fonts.fontFamilyBold,
   },
   container: {
     borderWidth: 2,
@@ -117,23 +118,22 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 20,
-    fontWeight: 'bold',
     letterSpacing: 1,
     textAlign: 'center',
     marginBottom: 20,
     color: colors.white,
+    fontFamily: fonts.fontFamilyBold,
   },
   button: {
     backgroundColor: colors.purple,
     width: 150,
     borderRadius: 20,
-    marginTop: 20,
     alignSelf: 'center',
     padding: 10,
   },
   buttonText: {
     color: colors.white,
     textAlign: 'center',
-    fontWeight: 'bold',
+    fontFamily: fonts.fontFamilyBold,
   },
 })

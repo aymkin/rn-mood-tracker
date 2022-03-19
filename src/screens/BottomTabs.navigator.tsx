@@ -6,6 +6,7 @@ import { AnalyticsScreen } from './Analytics.screen'
 import { SCREENS } from './constants/screens'
 import { AnalyticsIcon, HistoryIcon, HomeIcon } from '../components/Icon/Icons'
 import { colors } from '../theme/colors'
+import { fonts } from '../theme/fonts'
 
 const BottomTabs = createBottomTabNavigator()
 
@@ -13,6 +14,7 @@ export const BottomTabsNavigator: React.FC = () => {
   return (
     <BottomTabs.Navigator
       screenOptions={({ route }) => ({
+        headerTitleStyle: { fontFamily: fonts.fontFamilyBold },
         tabBarShowLabel: false,
         tabBarActiveTintColor: colors.blue,
         tabBarInactiveTintColor: colors.grey,

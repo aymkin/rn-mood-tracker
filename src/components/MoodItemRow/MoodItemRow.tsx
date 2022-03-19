@@ -4,6 +4,7 @@ import format from 'date-fns/format'
 import { Text } from '../Text'
 import { MoodOptionWithTimestamp } from '../../types'
 import { colors } from '../../theme/colors'
+import { fonts } from '../../theme/fonts'
 
 type MoodItemRowProps = {
   item: MoodOptionWithTimestamp
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   moodDescription: {
     fontSize: 18,
     color: colors.purple,
-    fontWeight: 'bold',
+    fontFamily: fonts.fontFamilyBold,
   },
   iconAndDescription: {
     flexDirection: 'row',
