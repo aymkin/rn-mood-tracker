@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: 'space-between',
     height: 230,
+    backgroundColor: 'rgba(0,0,0,0.2)',
   },
   image: {
     alignSelf: 'center',
@@ -120,6 +121,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     textAlign: 'center',
     marginBottom: 20,
+    color: colors.white,
   },
   button: {
     backgroundColor: colors.purple,
