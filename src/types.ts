@@ -1,6 +1,13 @@
+export type MoodDescriptionType =
+  | 'studious'
+  | 'pensive'
+  | 'happy'
+  | 'celebratory'
+  | 'frustrated'
+export type MoodEmojiType = '🧑‍💻' | '🤔' | '😊' | '🥳' | '😤'
 export type MoodOptionType = {
-  emoji: string
-  description: string
+  emoji: MoodEmojiType
+  description: MoodDescriptionType
 }
 
 export type MoodOptionWithTimestamp = {
