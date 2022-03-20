@@ -1,5 +1,10 @@
 import React, { useCallback, useState } from 'react'
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View, Image, Pressable } from 'react-native'
+import Reanimated, {
+  useAnimatedStyle,
+  withTiming,
+} from 'react-native-reanimated'
+
 import { MoodOptionType } from '../../types'
 import { Text } from '../Text'
 import { PressableArea } from '../PressableArea'
@@ -19,9 +24,12 @@ type MoodPickerProps = {
   onSelect: (mood: MoodOptionType) => void
 }
 
+const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable)
+
 export const MoodPicker: React.FC<MoodPickerProps> = ({ onSelect }) => {
   const [selectedMood, setSelectedMood] = useState<MoodOptionType>()
   const [hasSelected, setHasSelected] = useState(false)
+
   const handleSelect = useCallback(() => {
     if (selectedMood) {
       onSelect(selectedMood)
@@ -29,6 +37,14 @@ export const MoodPicker: React.FC<MoodPickerProps> = ({ onSelect }) => {
       setHasSelected(true)
     }
   }, [onSelect, selectedMood])
+
+  const buttonStyle = useAnimatedStyle(
+    () => ({
+      opacity: selectedMood ? withTiming(1) : withTiming(0.5),
+      transform: [{ scale: selectedMood ? withTiming(1) : 0.8 }],
+    }),
+    [selectedMood],
+  )
 
   if (hasSelected) {
     return (
@@ -66,9 +82,11 @@ export const MoodPicker: React.FC<MoodPickerProps> = ({ onSelect }) => {
           </View>
         ))}
       </View>
-      <PressableArea style={styles.button} onPress={handleSelect}>
+      <ReanimatedPressable
+        style={[styles.button, buttonStyle]}
+        onPress={handleSelect}>
         <Text style={styles.buttonText}>Choose</Text>
-      </PressableArea>
+      </ReanimatedPressable>
     </View>
   )
 }
