@@ -46,7 +46,7 @@ export const BottomTabsNavigator: React.FC = () => {
       <BottomTabs.Screen
         name={SCREENS.Analytics}
         component={AnalyticsScreen}
-        options={{ title: 'TFancy Charts' }}
+        options={{ title: 'Fancy Charts' }}
       />
     </BottomTabs.Navigator>
   )
