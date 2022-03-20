@@ -7,17 +7,23 @@ import { MoodOptionWithTimestamp } from '../../types'
 import { colors } from '../../theme/colors'
 import { fonts } from '../../theme/fonts'
 import { useAppContext } from '../../App.provider'
-import { PanGestureHandler } from 'react-native-gesture-handler'
+import {
+  PanGestureHandler,
+  PanGestureHandlerGestureEvent,
+} from 'react-native-gesture-handler'
 import Reanimated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
   useAnimatedGestureHandler,
+  runOnJS,
 } from 'react-native-reanimated'
 
 type MoodItemRowProps = {
   item: MoodOptionWithTimestamp
 }
+
+const maxPan = 80
 
 export const MoodItemRow: React.FC<MoodItemRowProps> = ({ item }) => {
   const appContext = useAppContext()
@@ -32,14 +38,40 @@ export const MoodItemRow: React.FC<MoodItemRowProps> = ({ item }) => {
     transform: [{ translateX: offset.value }],
   }))
 
-  const onGestureEvent = useAnimatedGestureHandler(
+  const removeWithDelay = React.useCallback(() => {
+    setTimeout(() => {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
+      appContext.handleDeleteMood(item)
+    }, 250)
+  }, [appContext, item])
+
+  const onGestureEvent = useAnimatedGestureHandler<
+    PanGestureHandlerGestureEvent,
+    { shouldRemove: boolean }
+  >(
     {
-      onActive: event => {
+      onActive: (event, ctx) => {
         const xVal = Math.floor(event.translationX)
         offset.value = xVal
+
+        // use Absolute value so the user could swipe either left or right
+        if (Math.abs(xVal) <= maxPan) {
+          ctx.shouldRemove = false
+        } else {
+          ctx.shouldRemove = true
+        }
       },
-      onEnd: () => {
-        offset.value = withTiming(0)
+      onEnd: (_, ctx) => {
+        if (ctx.shouldRemove) {
+          // if the item should be removed, animate it off the screen first
+          offset.value = withTiming(Math.sign(offset.value) * 2000)
+
+          // then trigger the remove mood item with a small delay
+          runOnJS(removeWithDelay)()
+        } else {
+          // otherwise, animate the item back to the start
+          offset.value = withTiming(0)
+        }
       },
     },
     [],
