@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useContext,
+  createContext,
+} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { MoodOptionType, MoodOptionWithTimestamp } from './types'
 
 type AppContextType = {
   moodList: MoodOptionWithTimestamp[]
   handleSelectMood: (mood: MoodOptionType) => void
+  handleDeleteMood: (mood: MoodOptionWithTimestamp) => void
 }
 
 type AppData = {
@@ -35,18 +42,27 @@ const setAppData = async (newData: AppData) => {
 const defaultValue = {
   moodList: [],
   handleSelectMood: () => {},
+  handleDeleteMood: () => {},
 }
 
-const AppContext = React.createContext<AppContextType>(defaultValue)
+const AppContext = createContext<AppContextType>(defaultValue)
 
-export const useAppContext = () => React.useContext(AppContext)
+export const useAppContext = () => useContext(AppContext)
 
 export const AppProvider: React.FC = ({ children }) => {
   const [moodList, setMoodList] = useState<MoodOptionWithTimestamp[]>([])
 
-  const handleSelectMood = React.useCallback((mood: MoodOptionType) => {
+  const handleSelectMood = useCallback((mood: MoodOptionType) => {
     setMoodList(current => {
       const newValue = [...current, { mood, timestamp: Date.now() }]
+      setAppData({ moods: newValue })
+      return newValue
+    })
+  }, [])
+
+  const handleDeleteMood = useCallback((mood: MoodOptionWithTimestamp) => {
+    setMoodList(current => {
+      const newValue = current.filter(item => item.timestamp !== mood.timestamp)
       setAppData({ moods: newValue })
       return newValue
     })
@@ -64,7 +80,8 @@ export const AppProvider: React.FC = ({ children }) => {
   }, [])
 
   return (
-    <AppContext.Provider value={{ moodList, handleSelectMood }}>
+    <AppContext.Provider
+      value={{ moodList, handleSelectMood, handleDeleteMood }}>
       {children}
     </AppContext.Provider>
   )
