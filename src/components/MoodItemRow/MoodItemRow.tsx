@@ -79,9 +79,8 @@ export const MoodItemRow: React.FC<MoodItemRowProps> = ({ item }) => {
 
   return (
     <PanGestureHandler
-      // @ts-expect-error This method is deprecated but supported for backward compatibility.
-      minDeltaX={1}
-      minDeltaY={100}
+      activeOffsetX={[-1, 1]}
+      activeOffsetY={[-100, 100]}
       onGestureEvent={onGestureEvent}>
       <Reanimated.View style={[styles.moodItem, animatedStyle]}>
         <View style={styles.iconAndDescription}>
