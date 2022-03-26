@@ -13,6 +13,9 @@ module.exports = {
     '@react-native-community',
     'prettier',
   ],
+  rules: {
+    strict: ['error', 'never'],
+  },
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   overrides: [
