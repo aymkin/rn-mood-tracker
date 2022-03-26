@@ -31,7 +31,6 @@ export const MoodItemRow: React.FC<MoodItemRowProps> = ({ item }) => {
 
   const handlePress = React.useCallback(() => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
-    // check perfomance issue?
     appContext.handleDeleteMood(item)
   }, [appContext, item])
 
@@ -82,7 +81,8 @@ export const MoodItemRow: React.FC<MoodItemRowProps> = ({ item }) => {
     <PanGestureHandler
       activeOffsetX={[-1, 1]}
       activeOffsetY={[-100, 100]}
-      onGestureEvent={onGestureEvent}>
+      onGestureEvent={onGestureEvent}
+    >
       <Reanimated.View style={[styles.moodItem, animatedStyle]}>
         <View style={styles.iconAndDescription}>
           <Text style={styles.moodValue}>{item.mood.emoji}</Text>

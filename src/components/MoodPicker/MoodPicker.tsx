@@ -10,6 +10,7 @@ import { Text } from '../Text'
 import { PressableArea } from '../PressableArea'
 import { colors } from '../../theme/colors'
 import { fonts } from '../../theme/fonts'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const imageSrc = require('../../assets/butterflies.png')
 
 const moodOptions: MoodOptionType[] = [

@@ -41,7 +41,9 @@ const setAppData = async (newData: AppData) => {
 
 const defaultValue = {
   moodList: [],
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   handleSelectMood: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   handleDeleteMood: () => {},
 }
 

@@ -4,7 +4,7 @@ import { HomeScreen } from './Home.screen'
 import { HistoryScreen } from './History.screen'
 import { AnalyticsScreen } from './Analytics.screen'
 import { SCREENS } from './constants/screens'
-import { AnalyticsIcon, HistoryIcon, HomeIcon } from '../components/Icon/Icons'
+import { AnalyticsIcon, HistoryIcon, HomeIcon } from '../components/Icon'
 import { colors } from '../theme/colors'
 import { fonts } from '../theme/fonts'
 
