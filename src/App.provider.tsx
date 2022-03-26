@@ -81,7 +81,8 @@ export const AppProvider: React.FC = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ moodList, handleSelectMood, handleDeleteMood }}>
+      value={{ moodList, handleSelectMood, handleDeleteMood }}
+    >
       {children}
     </AppContext.Provider>
   )

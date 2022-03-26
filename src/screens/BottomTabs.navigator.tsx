@@ -32,7 +32,8 @@ export const BottomTabsNavigator: React.FC = () => {
 
           return null
         },
-      })}>
+      })}
+    >
       <BottomTabs.Screen
         name={SCREENS.Home}
         component={HomeScreen}

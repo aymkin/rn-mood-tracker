@@ -31,6 +31,7 @@ export const MoodItemRow: React.FC<MoodItemRowProps> = ({ item }) => {
 
   const handlePress = React.useCallback(() => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
+    // check perfomance issue?
     appContext.handleDeleteMood(item)
   }, [appContext, item])
 

@@ -52,7 +52,8 @@ export const MoodPicker: React.FC<MoodPickerProps> = ({ onSelect }) => {
         <Image source={imageSrc} style={styles.image} />
         <PressableArea
           style={styles.button}
-          onPress={() => setHasSelected(false)}>
+          onPress={() => setHasSelected(false)}
+        >
           <Text style={styles.buttonText}>Back</Text>
         </PressableArea>
       </View>
@@ -73,7 +74,8 @@ export const MoodPicker: React.FC<MoodPickerProps> = ({ onSelect }) => {
                 option.emoji === selectedMood?.emoji
                   ? styles.selectedMoodItem
                   : undefined,
-              ]}>
+              ]}
+            >
               <Text style={styles.moodText}>{option.emoji}</Text>
             </PressableArea>
             <Text style={styles.descriptionText}>
@@ -84,7 +86,8 @@ export const MoodPicker: React.FC<MoodPickerProps> = ({ onSelect }) => {
       </View>
       <ReanimatedPressable
         style={[styles.button, buttonStyle]}
-        onPress={handleSelect}>
+        onPress={handleSelect}
+      >
         <Text style={styles.buttonText}>Choose</Text>
       </ReanimatedPressable>
     </View>
