@@ -41,7 +41,9 @@ const setAppData = async (newData: AppData) => {
 
 const defaultValue = {
   moodList: [],
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   handleSelectMood: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   handleDeleteMood: () => {},
 }
 
@@ -81,7 +83,8 @@ export const AppProvider: React.FC = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ moodList, handleSelectMood, handleDeleteMood }}>
+      value={{ moodList, handleSelectMood, handleDeleteMood }}
+    >
       {children}
     </AppContext.Provider>
   )

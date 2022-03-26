@@ -15,7 +15,8 @@ export const PressableArea: React.FC<PressableProps> = ({
           return [appliedStyle, { opacity: 0.9 }]
         }
         return appliedStyle
-      }}>
+      }}
+    >
       {children}
     </Pressable>
   )
