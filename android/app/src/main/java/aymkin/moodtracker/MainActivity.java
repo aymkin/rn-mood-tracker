@@ -1,4 +1,4 @@
-package com.moodtracker;
+package aymkin.moodtracker;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
