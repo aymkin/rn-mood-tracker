@@ -1,7 +1,8 @@
 import React from 'react'
 import { Platform, UIManager } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
-import { BottomTabsNavigator } from './screens/BottomTabs.navigator'
+
+import { DrawerNavigator } from './screens/Drawer.navigator'
 import { AppProvider } from './App.provider'
 import SplashScreen from 'react-native-splash-screen'
 
@@ -19,7 +20,7 @@ export const App: React.FC = () => {
   return (
     <AppProvider>
       <NavigationContainer>
-        <BottomTabsNavigator />
+        <DrawerNavigator />
       </NavigationContainer>
     </AppProvider>
   )
