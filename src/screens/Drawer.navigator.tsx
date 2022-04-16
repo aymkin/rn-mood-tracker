@@ -10,12 +10,12 @@ const Drawer = createDrawerNavigator()
 export const DrawerNavigator = () => {
   return (
     <Drawer.Navigator>
+      <Drawer.Screen name={SCREENS.QuickStart} component={QuickStartScreen} />
       <Drawer.Screen
         name={SCREENS.MoodApp}
         component={BottomTabsNavigator}
         options={{ headerShown: false }}
       />
-      <Drawer.Screen name={SCREENS.QuickStart} component={QuickStartScreen} />
     </Drawer.Navigator>
   )
 }
