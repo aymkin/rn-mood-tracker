@@ -19,17 +19,14 @@ export const BottomTabsNavigator: React.FC = () => {
         tabBarActiveTintColor: colors.blue,
         tabBarInactiveTintColor: colors.grey,
         tabBarIcon: ({ color, size }) => {
-          if (route.name === 'Home')
+          if (route.name === SCREENS.Home)
             return <HomeIcon color={color} size={size} />
-
-          if (route.name === 'History') {
+          if (route.name === SCREENS.History) {
             return <HistoryIcon color={color} size={size} />
           }
-
-          if (route.name === 'Analytics') {
+          if (route.name === SCREENS.Analytics) {
             return <AnalyticsIcon color={color} size={size} />
           }
-
           return null
         },
       })}>

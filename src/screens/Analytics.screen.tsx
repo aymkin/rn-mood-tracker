@@ -2,7 +2,9 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { VictoryPie } from 'victory-native'
 import { useAppContext } from '../App.provider'
+
 import { groupBy } from 'lodash'
+import { TopWarning } from '../components/TopWarning'
 
 export const AnalyticsScreen: React.FC = () => {
   const { moodList } = useAppContext()
@@ -16,11 +18,15 @@ export const AnalyticsScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <VictoryPie
-        data={data}
-        animate={true}
-        colorScale={['tomato', 'orange', 'gold', 'cyan', 'navy']}
-      />
+      {moodList.length ? (
+        <VictoryPie
+          data={data}
+          animate={true}
+          colorScale={['tomato', 'orange', 'gold', 'cyan', 'navy']}
+        />
+      ) : (
+        <TopWarning />
+      )}
     </View>
   )
 }
@@ -30,6 +36,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5fcff',
   },
 })
