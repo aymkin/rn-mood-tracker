@@ -23,7 +23,7 @@ type MoodItemRowProps = {
   item: MoodOptionWithTimestamp
 }
 
-const maxPan = 80
+const MAX_PAN = 80
 
 export const MoodItemRow: React.FC<MoodItemRowProps> = ({ item }) => {
   const appContext = useAppContext()
@@ -55,11 +55,7 @@ export const MoodItemRow: React.FC<MoodItemRowProps> = ({ item }) => {
         offset.value = xVal
 
         // use Absolute value so the user could swipe either left or right
-        if (Math.abs(xVal) <= maxPan) {
-          ctx.shouldRemove = false
-        } else {
-          ctx.shouldRemove = true
-        }
+        ctx.shouldRemove = Math.abs(xVal) > MAX_PAN
       },
       onEnd: (_, ctx) => {
         if (ctx.shouldRemove) {
